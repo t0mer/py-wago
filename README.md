@@ -70,6 +70,27 @@ await client.send_message(
 )
 ```
 
+## Custom Headers
+
+You can pass extra HTTP headers that will be included in **every request**.
+This is useful when the API is behind a reverse proxy such as Cloudflare Access
+or any other service that requires additional authentication headers:
+
+```python
+client = WagoClient(
+    base_url="https://wago.example.com",
+    username="user",
+    password="pass",
+    custom_headers={
+        "CF-Access-Client-Id": "xxx.access",
+        "CF-Access-Client-Secret": "my-secret",
+    },
+)
+```
+
+The headers are merged with the per-request headers (e.g. `X-Device-Id`), so
+you can combine `custom_headers` with `device_id` without conflicts.
+
 ## API Coverage
 
 ### App
@@ -239,6 +260,10 @@ with open("doc.pdf", "rb") as f:
         filename="report.pdf",
     )
 ```
+
+## Issues
+
+Found a bug or have a feature request? Please [open an issue](https://github.com/t0mer/py-wago/issues).
 
 ## License
 

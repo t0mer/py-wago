@@ -4,13 +4,16 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "py-wago"
-version = "0.1.0"
+version = "0.2.0"
 description = "Async Python client library for the Wago WhatsApp API (MultiDevice)"
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.9"
 authors = [
-    {name = "tomer"},
+    {name = "Tomer Klein", email = "tomer.klein@gmail.com"},
+]
+maintainers = [
+    {name = "Tomer Klein", email = "tomer.klein@gmail.com"},
 ]
 keywords = ["whatsapp", "api", "async", "wago", "client"]
 classifiers = [
@@ -31,6 +34,11 @@ dependencies = [
     "aiohttp>=3.9",
     "pydantic>=2.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/t0mer/py-wago"
+"Bug Tracker" = "https://github.com/t0mer/py-wago/issues"
+Source = "https://github.com/t0mer/py-wago"
 
 [project.optional-dependencies]
 dev = [

@@ -80,6 +80,8 @@ class WagoClient:
         timeout: Default request timeout in seconds.
         session: Optional pre-existing :class:`aiohttp.ClientSession`.
             When provided the caller is responsible for closing it.
+        custom_headers: Optional dictionary of extra HTTP headers to include
+            in every request (e.g. Cloudflare Access service-auth headers).
     """
 
     def __init__(
@@ -91,6 +93,7 @@ class WagoClient:
         device_id: Optional[str] = None,
         timeout: float = 30.0,
         session: Optional[aiohttp.ClientSession] = None,
+        custom_headers: Optional[Dict[str, str]] = None,
     ) -> None:
         self._base_url = base_url.rstrip("/")
         self._auth = BasicAuth(username, password)
@@ -98,6 +101,7 @@ class WagoClient:
         self._timeout = aiohttp.ClientTimeout(total=timeout)
         self._external_session = session is not None
         self._session = session
+        self._custom_headers: Dict[str, str] = dict(custom_headers) if custom_headers else {}
 
     # ── lifecycle ─────────────────────────────────────────────────────────
 
@@ -123,8 +127,8 @@ class WagoClient:
     # ── internals ─────────────────────────────────────────────────────────
 
     def _headers(self, device_id: Optional[str] = None) -> Dict[str, str]:
+        headers: Dict[str, str] = dict(self._custom_headers)
         did = device_id or self._device_id
-        headers: Dict[str, str] = {}
         if did:
             headers["X-Device-Id"] = did
         return headers

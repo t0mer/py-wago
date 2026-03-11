@@ -7,15 +7,22 @@ long_description = readme_path.read_text(encoding="utf-8") if readme_path.exists
 
 setup(
     name="py-wago",
-    version="0.1.0",
+    version="0.2.0",
     description="Async Python client library for the Wago WhatsApp API (MultiDevice)",
     long_description=long_description,
     long_description_content_type="text/markdown",
     license="MIT",
     author="Tomer Klein",
     author_email="tomer.klein@gmail.com",
+    maintainer="Tomer Klein",
+    maintainer_email="tomer.klein@gmail.com",
     url="https://github.com/t0mer/py-wago",
     download_url="https://pypi.org/project/py-wago/",
+    project_urls={
+        "Homepage": "https://github.com/t0mer/py-wago",
+        "Bug Tracker": "https://github.com/t0mer/py-wago/issues",
+        "Source": "https://github.com/t0mer/py-wago",
+    },
     packages=find_packages(exclude=("tests",)),
     python_requires=">=3.9",
     install_requires=[
